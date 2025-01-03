@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MVVM with dagger</string>
+    <string name="click_me">Click me to get token</string>
+</resources>
