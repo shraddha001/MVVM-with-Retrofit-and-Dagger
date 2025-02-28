@@ -3,6 +3,7 @@ package com.example.mvvmwithdagger.di.modules
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.mvvmwithdagger.viewmodel.MyViewModel
+import com.example.mvvmwithdagger.viewmodel.NetworkViewModel
 import dagger.Binds
 import dagger.MapKey
 import dagger.Module
@@ -18,10 +19,16 @@ abstract class ViewModelModule {
     abstract fun provideViewModelFactory(
         viewModelFactory: ViewModelFactory
     ): ViewModelProvider.Factory
+
     @Binds
     @IntoMap
     @ViewModelKey(MyViewModel::class)
     abstract fun bindMyViewModel(myViewModel: MyViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(NetworkViewModel::class)
+    abstract fun bindNetworkViewModel(networkViewModel: NetworkViewModel): ViewModel
 
 }
 

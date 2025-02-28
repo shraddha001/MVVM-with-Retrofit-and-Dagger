@@ -3,41 +3,35 @@ package com.example.mvvmwithdagger.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mvvmwithdagger.TokenDto
-import com.example.mvvmwithdagger.repository.MyRepository
-import com.example.mvvmwithdagger.resource.NetworkError
-import com.example.mvvmwithdagger.resource.Resource
+import com.sm.task.example.repository.repository.MyRepository
+import com.sm.task.example.repository.repository.model.PostsResult
+import com.sm.task.example.repository.repository.resource.NetworkError
+import com.sm.task.example.repository.repository.resource.Resource
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MyViewModel @Inject constructor(
-    val repository: MyRepository
+    private val repository: MyRepository
 ) : ViewModel() {
-    var tokenState = MutableLiveData<Resource<TokenDto>>()
+    private var postState = MutableLiveData<Resource<PostsResult>>()
 
-    fun tokenState() = tokenState
+    fun getPostState() = postState
 
     var isOffline = false
 
-    fun token() {
+    fun getPosts() {
         if (isOffline) {
             // No network connection
-            tokenState.value = Resource.error(
+            postState.value = Resource.error(
                 data = null,
                 networkError = NetworkError.NO_CONNECTIVITY
             )
             return
         }
-        tokenState.value = Resource.loading(data = null)
+        postState.value = Resource.loading(data = null)
         viewModelScope.launch {
-            val resource = repository.token()
-            tokenState.postValue(resource)
+            val resource = repository.getPosts()
+            postState.postValue(resource)
         }
-    }
-
-    fun getClientSecret(): String = repository.getClientSecret()
-
-    fun resetTokenState() {
-        tokenState = MutableLiveData<Resource<TokenDto>>()
     }
 }
