@@ -21,4 +21,9 @@ dependencyResolutionManagement {
 
 rootProject.name = "MVVM with dagger"
 include(":app")
- 
+include(":api")
+include(":repository")
+
+project(":api").projectDir = File(rootDir, "base/api")
+project(":repository").projectDir = File(rootDir, "base/repository")
+

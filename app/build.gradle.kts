@@ -27,6 +27,7 @@ android {
             )
         }
     }
+    buildFeatures.dataBinding = true  // enable data binding
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -37,12 +38,13 @@ android {
 }
 
 dependencies {
-
+    implementation(project(":repository"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.navigation.ui.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -69,5 +71,17 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.8.2")
 
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.4")
+
+    //Navigation
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
+    implementation("androidx.navigation:navigation-fragment:2.7.7")
+    implementation("androidx.navigation:navigation-ui:2.7.7")
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:2.7.7")
+
+    // Testing Navigation
+    androidTestImplementation("androidx.navigation:navigation-testing:2.7.7")
+    // JSON serialization library, works with the Kotlin serialization plugin
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+
 
 }

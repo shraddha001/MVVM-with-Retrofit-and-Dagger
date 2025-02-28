@@ -4,7 +4,7 @@ import android.app.Activity
 import android.app.Application
 import com.example.mvvmwithdagger.MainActivity
 import com.example.mvvmwithdagger.di.modules.AppModule
-import com.example.mvvmwithdagger.repository.di.RepositorySubcomponent
+import com.sm.task.example.repository.repository.di.RepositorySubcomponent
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -12,7 +12,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [AppModule::class],
-    dependencies = [RepositorySubcomponent::class]
+    dependencies = [com.sm.task.example.repository.repository.di.RepositorySubcomponent::class]
 )
 interface AppComponent {
 
@@ -22,7 +22,7 @@ interface AppComponent {
     interface Factory {
         fun create(
             @BindsInstance app: Application,
-            repositorySubcomponent: RepositorySubcomponent
+            repositorySubcomponent: com.sm.task.example.repository.repository.di.RepositorySubcomponent
         ): AppComponent
     }
 }
