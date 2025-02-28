@@ -4,13 +4,16 @@ import android.app.Application
 import com.sm.task.example.repository.repository.di.modules.MainModule
 import com.sm.task.example.repository.repository.di.modules.NetworkModule
 import com.sm.task.example.repository.repository.di.modules.PreferencesModule
+import com.task.sm.database.di.DatabaseComponent
+import com.task.sm.database.di.DatabaseSubcomponent
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [MainModule::class, PreferencesModule::class, NetworkModule::class]
+    modules = [MainModule::class, PreferencesModule::class, NetworkModule::class],
+    dependencies = [DatabaseSubcomponent::class]
 )
 interface RepositoryComponent {
 
@@ -20,6 +23,7 @@ interface RepositoryComponent {
     interface Factory {
         fun create(
             @BindsInstance app: Application,
+            databaseSubcomponent: DatabaseSubcomponent
         ): RepositoryComponent
     }
 
@@ -27,6 +31,6 @@ interface RepositoryComponent {
         fun create(
             app: Application
         ): RepositorySubcomponent = DaggerRepositoryComponent.factory()
-            .create(app).repositorySubcomponent
+            .create(app, DatabaseComponent.createDatabaseComponent(app)).repositorySubcomponent
     }
 }

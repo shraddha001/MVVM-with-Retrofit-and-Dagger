@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/base/api" />
+            <option value="$PROJECT_DIR$/base/database" />
             <option value="$PROJECT_DIR$/base/repository" />
           </set>
         </option>
