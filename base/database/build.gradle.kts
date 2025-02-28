@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.sm.task.example.repository"
+    namespace = "com.task.sm.database"
     compileSdk = 34
 
     defaultConfig {
@@ -34,8 +34,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":api"))
-    implementation(project(":database"))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -43,15 +42,18 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    //dagger
-    implementation("com.google.dagger:dagger-android:2.52")
-    implementation("com.google.dagger:dagger:2.52")
-    kapt("com.google.dagger:dagger-compiler:2.52")
+    //Room
+    implementation("androidx.room:room-runtime:2.6.1")
+    kapt ("androidx.room:room-compiler:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
 
-    //moshi
-    implementation("com.squareup.moshi:moshi:1.15.1")
-    implementation("com.squareup.retrofit2:converter-moshi:2.11.0")
-    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.15.1")
+    //Live Data
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.7")
 
+    // Dagger
+    implementation("com.google.dagger:dagger:2.55")
+    kapt("com.google.dagger:dagger-compiler:2.55")
 
+    //test
+    androidTestImplementation("androidx.room:room-testing:2.6.1")
 }

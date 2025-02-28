@@ -23,7 +23,8 @@ rootProject.name = "MVVM with dagger"
 include(":app")
 include(":api")
 include(":repository")
+include(":database")
 
 project(":api").projectDir = File(rootDir, "base/api")
 project(":repository").projectDir = File(rootDir, "base/repository")
-
+project(":database").projectDir = File(rootDir, "base/database")
